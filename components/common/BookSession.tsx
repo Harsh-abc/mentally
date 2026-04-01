@@ -19,7 +19,7 @@ export function BookSession() {
         <Dialog>
             <form>
                 <DialogTrigger asChild>
-                    <Button className="bg-white rounded-full p-5"> <CTA text={'Book A Session'} className={'w-[160px]'} /></Button>
+                    <Button className="bg-white rounded-full py-5"> <CTA text={'Book A Session'} className={'w-[160px]'} className1={'group-hover:text-[#7FA698] text-black'} dotClassName={'group-hover:bg-[#7FA698] text-black'} /></Button>
 
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-sm">

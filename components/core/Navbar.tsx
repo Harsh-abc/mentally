@@ -43,8 +43,8 @@ export function Navbar() {
 
     return (
         <header
-            className={cn('fixed top-0 z-100 w-full border-b border-transparent', {
-                'supports-backdrop-filter:bg-background/10 bg-transparent backdrop-blur-lg':
+            className={cn('fixed top-0 z-100 w-full', {
+                'supports-backdrop-filter:bg-background/2 bg-transparent backdrop-blur-lg':
                     scrolled,
             })}
         >
@@ -52,7 +52,7 @@ export function Navbar() {
                 <div className="text-white">
                     <h1 className='font-crimson text-2xl tracking-[2px]'>ment-ally</h1>
                 </div>
-                <div className="hidden items-center gap-18 md:flex">
+                <div className="hidden items-center gap-10 md:flex">
                     {links.map((link) => (
                         <a key={link.label} className={'text-white uppercase text-xs font-bold'} href={link.href}>
                             {link.label}
