@@ -11,7 +11,9 @@ export default function Home() {
 
       <div className="fixed inset-0 -z-10  w-full h-full">
         {/* <Image src={assets.herobanner} alt="" className="w-full h-full object-top" /> */}
-        <img src={assets.herobanner.src} alt="" className="w-full h-full object-cover object-top" />
+        {/* <img src={assets.herobanner.src} alt="" className="w-full h-full object-cover object-top" /> */}
+        <img src={assets.herobanner1.src} alt="" className="w-full h-full object-cover object-top" />
+        {/* <img src={assets.herobanner2.src} alt="" className="w-full h-full object-cover object-top" /> */}
       </div>
       <main className="main relative">
         <Hero />
