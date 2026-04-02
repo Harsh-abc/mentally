@@ -1,11 +1,12 @@
+import Link from "next/link";
 import CTA from "../common/CTA";
 import { Button } from "../ui/button";
 import { Label } from "@/components/ui/label"
-import { Switch } from "@/components/ui/switch"
+
 
 export default function Hero() {
     return (
-        <section className="relative min-h-screen">
+        <section className="relative">
 
             <div className="w-full relative top-80 left-20">
                 <h1 className="text-9xl text-white w-[55%] font-crimson font-semibold">
@@ -64,13 +65,15 @@ export default function Hero() {
                 </div>
             </div>
 
-            <div className="relative h-[120vh]">
+            <div className="relative h-[100vh]">
                 <div className="absolute top-100 left-[50%] transform translate-x-[-50%] flex items-center justify-center gap-2 ">
                     <Label className="text-2xl text-white">Mentally</Label>
-                    <div className="hk-toggle hk-tg-5">
-                        <input type="checkbox" id="tg5" />
-                        <label htmlFor="tg5"></label>
-                    </div>
+                    <Link href={'#aboutScroll'}>
+                        <div className="hk-toggle hk-tg-5">
+                            <input type="checkbox" id="tg5" />
+                            <label htmlFor="tg5"></label>
+                        </div>
+                    </Link>
                 </div>
                 <div className="absolute top-115 flex items-center justify-center">
                     <p className="text-6xl w-[60%] font-semibold text-white font-crimson">Where curiosity replaces judgment, and healing happens in connection.</p>

@@ -4,6 +4,8 @@ import assets from "../assets/assets";
 import Hero from "@/components/core/Hero";
 import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
+import AboutHero from "@/components/core/AboutHero";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -18,6 +20,9 @@ export default function Home() {
       </div>
       <main className="main relative">
         <Hero />
+
+        <AboutHero />
+
 
       </main>
     </div>

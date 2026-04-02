@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { MenuToggleIcon } from '@/components/ui/menu-toggle-icon';
@@ -10,6 +10,7 @@ import { BookSession } from '../common/BookSession';
 export function Navbar() {
     const [open, setOpen] = React.useState(false);
     const scrolled = useScroll(10);
+    const [darkNav, setDarkNav] = useState(false);
 
     const links = [
         {
@@ -41,20 +42,55 @@ export function Navbar() {
         };
     }, [open]);
 
+
+
+    useEffect(() => {
+        const section = document.getElementById("aboutScroll");
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setDarkNav(true);
+                } else {
+                    setDarkNav(false);
+                }
+            },
+            {
+                threshold: 0.9,
+            }
+        );
+
+        console.log(observer)
+
+        if (section) observer.observe(section);
+
+        return () => {
+            if (section) observer.unobserve(section);
+        };
+    }, []);
+
     return (
         <header
-            className={cn('fixed top-0 z-100 w-full pt-[20px]', {
-                'supports-backdrop-filter:bg-background/1 bg-transparent backdrop-blur-xs':
-                    scrolled,
-            })}
+            className={cn(
+                "fixed top-0 z-100 w-full pt-[20px] transition-colors duration-500",
+                {
+                    "bg-transparent": !darkNav,
+                    "bg-white": darkNav,
+                    "supports-backdrop-filter:bg-background/1 bg-transparent backdrop-blur-xs":
+                        scrolled,
+                }
+            )}
         >
-            <nav className="mx-auto flex h-14 w-full max-w-7xl items-center justify-between px-0 ">
-                <div className="text-white">
+            <nav className={`mx-auto flex h-14 w-full max-w-7xl items-center justify-between px-0 `}>
+                <div className={darkNav ? "text-(--navText)" : "text-white"}>
                     <h1 className='font-crimson text-2xl tracking-[2px]'>ment-ally</h1>
                 </div>
                 <div className="hidden items-center gap-10 md:flex">
                     {links.map((link) => (
-                        <a key={link.label} className={'text-white uppercase text-xs font-bold'} href={link.href}>
+                        <a key={link.label}
+                            className={`uppercase text-xs font-bold ${darkNav ? "text-(--navText)" : "text-white"
+                                }`}
+                            href={link.href}>
                             {link.label}
                         </a>
                     ))}
