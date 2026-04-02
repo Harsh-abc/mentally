@@ -2,7 +2,8 @@ import { Navbar } from "@/components/core/Navbar";
 // import Image from "next/image";
 import assets from "../assets/assets";
 import Hero from "@/components/core/Hero";
-
+import { Label } from "@/components/ui/label"
+import { Switch } from "@/components/ui/switch"
 
 export default function Home() {
   return (
@@ -17,11 +18,6 @@ export default function Home() {
       </div>
       <main className="main relative">
         <Hero />
-
-
-        <section className="relative top-100">
-          <h2 className="text-4xl p-20">Next Section</h2>
-        </section>
 
       </main>
     </div>

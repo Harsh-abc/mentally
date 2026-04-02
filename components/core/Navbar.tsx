@@ -43,12 +43,12 @@ export function Navbar() {
 
     return (
         <header
-            className={cn('fixed top-0 z-100 w-full', {
-                'supports-backdrop-filter:bg-background/2 bg-transparent backdrop-blur-lg':
+            className={cn('fixed top-0 z-100 w-full pt-[20px]', {
+                'supports-backdrop-filter:bg-background/1 bg-transparent backdrop-blur-xs':
                     scrolled,
             })}
         >
-            <nav className="mx-auto flex h-14 w-full max-w-7xl items-center justify-between px-0 py-15">
+            <nav className="mx-auto flex h-14 w-full max-w-7xl items-center justify-between px-0 ">
                 <div className="text-white">
                     <h1 className='font-crimson text-2xl tracking-[2px]'>ment-ally</h1>
                 </div>

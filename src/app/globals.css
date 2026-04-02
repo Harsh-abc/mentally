@@ -145,3 +145,98 @@ body {
     @apply font-sans;
   }
 }
+
+
+
+
+.hk-toggle-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 40px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.hk-toggle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.hk-toggle span {
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+.hk-toggle input {
+  display: none;
+}
+
+.hk-toggle label {
+  width: 78px;
+  height: 38px;
+  border-radius: 40px;
+  position: relative;
+  cursor: pointer;
+}
+
+.hk-toggle label::after {
+  content: "";
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  border-radius: 50%;
+  transition: 0.35s;
+}
+
+
+/* 5 Glass */
+.hk-tg-5 label {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hk-tg-5 label::after {
+  background: #fff;
+}
+
+.hk-tg-5 input:checked+label::after {
+  transform: translateX(38px);
+}
+
+
+.circle-1,
+.circle-2,
+.circle-3 {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+}
+
+.circle-1 {
+  width: 400px;
+  height: 400px;
+  background: rgba(127, 166, 152, 0.4);
+  top: 10%;
+  left: 20%;
+}
+
+.circle-2 {
+  width: 500px;
+  height: 500px;
+  background: rgba(255, 255, 255, 0.2);
+  top: 40%;
+  right: 10%;
+}
+
+.circle-3 {
+  width: 350px;
+  height: 350px;
+  background: rgba(127, 166, 152, 0.3);
+  bottom: 10%;
+  left: 40%;
+}
