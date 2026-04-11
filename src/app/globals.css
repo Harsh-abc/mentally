@@ -47,7 +47,9 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
   --cta-button: var(--cta-button);
-  --navText: var(--navText)
+  --navText: var(--navText);
+  --headingText: var(--headingText);
+  --btnBG: var(--btnBG)
 }
 
 :root {
@@ -87,6 +89,8 @@
   --font-secondary: var(--font-crimson);
   --cta-button: #7FA69B;
   --navText: #7FA698;
+  --headingText: #7FA698;
+  --btnBG: #7FA698;
 }
 
 .dark {

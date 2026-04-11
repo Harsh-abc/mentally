@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button"
 import {
     Dialog,
@@ -13,13 +14,53 @@ import { Field, FieldGroup } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import CTA from "./CTA"
+import { useEffect, useState } from "react"
+
 
 export function BookSession() {
+    const [darkNav, setDarkNav] = useState(false);
+    useEffect(() => {
+        const section = document.getElementById("aboutScroll");
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setDarkNav(true);
+                } else {
+                    setDarkNav(false);
+                }
+            },
+            {
+                threshold: 0.9,
+            }
+        );
+
+        console.log(observer)
+
+        if (section) observer.observe(section);
+
+        return () => {
+            if (section) observer.unobserve(section);
+        };
+    }, []);
+
     return (
         <Dialog>
             <form>
                 <DialogTrigger asChild>
-                    <Button className="bg-white rounded-full py-5"> <CTA text={'Book A Session'} className={'w-[160px]'} className1={'group-hover:text-[#7FA698] text-black'} dotClassName={'group-hover:bg-[#7FA698] text-black'} /></Button>
+                    <Button className={`bg-white rounded-full py-5 cursor-pointer ${darkNav
+                        ? "bg-(--navText) text-white hover:bg-white"
+                        : "bg-white text-(--navText) hover:bg-(--navText) "
+                        }`}> <CTA text={'Book A Session'} className={'w-[160px]'} className1={`transition-colors duration-300
+      ${darkNav
+                                ? "text-white group-hover:text-(--navText)"
+                                : "text-(--navText) group-hover:text-white"
+                            }`}
+                            dotClassName={`transition-colors duration-300
+      ${darkNav
+                                    ? "bg-white group-hover:bg-(--navText)"
+                                    : "bg-(--navText) group-hover:bg-white"
+                                }`} /></Button>
 
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-sm">

@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
 import AboutHero from "@/components/core/AboutHero";
 import Link from "next/link";
+import Testimonials from "@/components/core/Testimonials";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
         <Hero />
 
         <AboutHero />
+        <Testimonials />
 
 
       </main>
