@@ -22,11 +22,11 @@ export function Navbar() {
       href: "#",
     },
     {
-      label: "Stories",
+      label: "Meet the team",
       href: "#",
     },
     {
-      label: "Journal",
+      label: "Resouces",
       href: "#",
     },
   ];
@@ -89,9 +89,8 @@ export function Navbar() {
           {links.map((link) => (
             <a
               key={link.label}
-              className={`uppercase text-xs font-bold ${
-                darkNav ? "text-(--navText)" : "text-white"
-              }`}
+              className={`uppercase text-xs font-bold ${darkNav ? "text-(--navText)" : "text-white"
+                }`}
               href={link.href}
             >
               {link.label}
