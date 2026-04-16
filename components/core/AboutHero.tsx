@@ -6,7 +6,7 @@ import { Button } from "../ui/button";
 
 export default function AboutHero() {
     return (
-        <section id="aboutScroll" className="bg-white h-auto">
+        <section id="aboutScroll" className="bg-white h-screen">
 
             <div className="w-full px-10 py-10">
                 <div className="flex justify-between gap-10">

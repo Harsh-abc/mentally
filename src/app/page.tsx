@@ -9,6 +9,7 @@ import Link from "next/link";
 import Testimonials from "@/components/core/Testimonials";
 import FooterDemo from "@/components/core/Footer";
 import WhyMentally from "@/components/core/WhyMentally";
+// import MarqueeText from "@/components/common/MarqueeText";
 
 export default function Home() {
   return (
@@ -23,12 +24,10 @@ export default function Home() {
       </div>
       <main className="main relative">
         <Hero />
-
+        {/* <MarqueeText /> */}
         <AboutHero />
         <WhyMentally />
         <Testimonials />
-
-
         <FooterDemo />
       </main>
 
