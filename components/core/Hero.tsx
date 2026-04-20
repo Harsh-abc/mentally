@@ -1,12 +1,47 @@
+'use client'
 import Link from "next/link";
 import CTA from "../common/CTA";
 import { Button } from "../ui/button";
 import { Label } from "@/components/ui/label";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
+  const path1 = useRef<SVGPathElement | null>(null);
+  const path2 = useRef<SVGPathElement | null>(null);
+
+
+  useEffect(() => {
+    const paths = [path1.current, path2.current];
+
+    paths.forEach((path) => {
+      if (!path) return;
+
+      const length = path.getTotalLength();
+
+      gsap.set(path, {
+        strokeDasharray: length,
+        strokeDashoffset: length
+      });
+
+      gsap.to(path, {
+        strokeDashoffset: 0,
+        ease: "none",
+        scrollTrigger: {
+          trigger: path,
+          start: "top 30%",
+          end: "bottom 70%",
+          scrub: 1,
+        }
+      });
+    });
+  }, []);
+
   return (
     <>
-      <section className="relative h-[50%]">
+      <section className="relative h-screen">
         <div className="w-full relative top-70 left-20">
           <h1 className="text-9xl text-white w-[55%] font-crimson font-semibold">
             Your Ally In Mental Health And Beyond.
@@ -31,7 +66,7 @@ export default function Hero() {
           </Button>
         </div>
 
-        <div className="absolute -top-10 left-[50%] transform translate-x-[-50%] w-180">
+        <div className="absolute -top-10 left-[50%] transform translate-x-[-50%] w-200 z-50">
           <div className="w-full h-screen opacity-90">
             <div>
               <svg
@@ -42,12 +77,13 @@ export default function Hero() {
                 preserveAspectRatio="xMidYMid meet"
               >
                 <path
+                  ref={path1}
                   d="M 568.5 0 C -446.766 669.726 420.757 754.867 688 543.5 C 955.243 332.133 149.225 460.324 381 1140"
                   stroke="white"
                   strokeWidth="2"
                   fill="transparent"
-                  strokeDasharray="2423.35"
-                  strokeDashoffset="138.174"
+                // strokeDasharray="2423.35"
+                // strokeDashoffset="138.174"
                 />
               </svg>
             </div>
@@ -62,12 +98,13 @@ export default function Hero() {
                 preserveAspectRatio="xMidYMid meet"
               >
                 <path
+                  ref={path2}
                   d="M 568.5 0 C -446.766 669.726 420.757 754.867 688 543.5 C 955.243 332.133 149.225 460.324 381 1140"
                   stroke="white"
                   strokeWidth="2"
                   fill="transparent"
-                  strokeDasharray="2423.35"
-                  strokeDashoffset="138.174"
+                // strokeDasharray="2423.35"
+                // strokeDashoffset="138.174"
                 />
               </svg>
             </div>
@@ -77,13 +114,13 @@ export default function Hero() {
       <section className="relative h-screen">
         <div className="relative h-screen">
           <div className="absolute top-100 left-[50%] transform translate-x-[-50%] flex items-center justify-center gap-2 ">
-            <Label className="text-2xl text-white">Mentally</Label>
-            <Link href={"#aboutScroll"}>
+            <Label className="text-3xl font-crimson text-white">Ment(ally)</Label>
+            {/* <Link href={''}>
               <div className="hk-toggle hk-tg-5">
                 <input type="checkbox" id="tg5" />
                 <label htmlFor="tg5"></label>
               </div>
-            </Link>
+            </Link> */}
           </div>
           <div className="absolute top-115 flex items-center justify-center">
             <p className="text-6xl w-[60%] font-semibold text-white font-crimson">

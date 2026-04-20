@@ -6,13 +6,13 @@ import { Button } from "../ui/button";
 
 export default function AboutHero() {
     return (
-        <section id="aboutScroll" className="bg-white h-screen">
+        <section id="aboutScroll" className="bg-white h-auto">
 
             <div className="w-full px-10 py-10">
-                <div className="flex justify-between gap-10">
+                <div className="flex justify-between gap-0">
                     <div className="px-10 py-10">
-                        <h2 className="text-7xl font-crimson text-(--headingText)">Meet Natasha Irani</h2>
-                        <div className="py-3">
+                        <h2 className="text-8xl font-semibold text-(--headingText)"><span className="text-black">Meet</span> Natasha Irani</h2>
+                        <div className="py-3 w-2xl">
                             <p className="text-lg mt-3">A therapeutic space where you can slow down, understand yourself more deeply, and grow in ways that feel true to you.
                             </p>
                             <p className="text-lg mt-3">Ment(ally) is a group psychotherapy practice based in Mumbai, offering both in-person and online therapy across the globe. </p>
@@ -30,7 +30,7 @@ export default function AboutHero() {
                         </div>
                     </div>
                     <div>
-                        <Image src={assets.aboutProfile} alt="about profile" className="max-w-xl h-[600px] object-cover object-center rounded-3xl"></Image>
+                        <Image src={assets.aboutProfile} alt="about profile" className="max-w-xl h-[650px] object-cover object-center rounded-3xl"></Image>
                     </div>
                 </div>
             </div>

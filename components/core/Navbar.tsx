@@ -6,6 +6,7 @@ import { MenuToggleIcon } from "@/components/ui/menu-toggle-icon";
 import { useScroll } from "@/components/use-scroll";
 import { createPortal } from "react-dom";
 import { BookSession } from "../common/BookSession";
+import CTA from "../common/CTA";
 
 export function Navbar() {
   const [open, setOpen] = React.useState(false);
@@ -26,7 +27,7 @@ export function Navbar() {
       href: "#",
     },
     {
-      label: "Resouces",
+      label: "Resources",
       href: "#",
     },
   ];
@@ -83,7 +84,7 @@ export function Navbar() {
         className={`mx-auto flex h-14 w-full max-w-7xl items-center justify-between px-0 `}
       >
         <div className={darkNav ? "text-(--navText)" : "text-white"}>
-          <h1 className="font-crimson text-2xl tracking-[2px]">ment-ally</h1>
+          <h1 className="font-crimson text-3xl  tracking-[2px]">ment(ally)</h1>
         </div>
         <div className="hidden items-center gap-10 md:flex">
           {links.map((link) => (
@@ -96,7 +97,17 @@ export function Navbar() {
               {link.label}
             </a>
           ))}
-          <BookSession />
+          <Button
+            className={"bg-(--cta-button) py-5 rounded-full"}
+          >
+            <CTA
+              text={"Book A Session"}
+              className={"bg-cta-button"}
+              className1={"group-hover:text-[#fff]"}
+              dotClassName={"bg-white"}
+            />
+          </Button>
+          {/* <BookSession /> */}
         </div>
         <Button
           size="icon"

@@ -271,3 +271,42 @@ body {
   margin: 0 30px 0 0;
   color: white;
 }
+
+/* SVG PATH */
+.svg-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  /* important */
+  z-index: 10;
+}
+
+.svg {
+  position: absolute;
+  rotate: 90deg;
+  transform: translateY(-50%) rotate(90deg);
+}
+
+.svg.svg-left {
+  top: 35%;
+  left: 0%;
+  width: 100vh;
+  height: 180vw;
+}
+
+.svg.svg-right {
+  top: 33%;
+  left: 0%;
+  width: 100vh;
+  height: 180vw;
+}
+
+
+.content {
+  position: relative;
+  z-index: 2;
+  padding: 100px;
+}

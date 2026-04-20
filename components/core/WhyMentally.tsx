@@ -1,9 +1,9 @@
 export default function WhyMentally() {
     return (
         <section className="bg-background">
-            <div className="py-10">
-                <h1 className="font-crimson text-7xl  text-center text-(--headingText)">Why Ment(ally)</h1>
-                <p className="text-center text-xl mt-2 capitalize">your ally in mental health and beyond</p>
+            <div className="py-10 flex items-center  flex-col">
+                <h1 className="text-8xl font-semibold text-center text-(--headingText)"><span className="text-black">Why</span> Ment(ally)</h1>
+                <p className="text-center text-xl mt-4 capitalize w-2xl">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores corporis aspernatur voluptate eligendi autem vero unde distinctio laborum deserunt quae.</p>
             </div>
             <div className="flex items-center justify-between py-10">
                 <div className="flex items-center justify-between gap-20 px-20">
