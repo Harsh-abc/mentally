@@ -11,16 +11,16 @@ export default function AboutHero() {
             <div className="w-full px-10 py-10">
                 <div className="flex justify-between gap-0">
                     <div className="px-10 py-10">
-                        <h2 className="text-8xl font-semibold text-(--headingText)"><span className="text-black">Meet</span> Natasha Irani</h2>
+                        <h2 className="text-8xl font-semibold text-(--headingText) font-crimson"><span className="text-black">Meet</span> Natasha Irani</h2>
                         <div className="py-3 w-2xl">
-                            <p className="text-lg mt-3">A therapeutic space where you can slow down, understand yourself more deeply, and grow in ways that feel true to you.
+                            <p className="text-base tracking-wide mt-3">A therapeutic space where you can slow down, understand yourself more deeply, and grow in ways that feel true to you.
                             </p>
-                            <p className="text-lg mt-3">Ment(ally) is a group psychotherapy practice based in Mumbai, offering both in-person and online therapy across the globe. </p>
-                            <p className="text-lg mt-3">A collaborative, multispecialty practice supporting people across age groups, identities, and lived experiences. A space to grow, heal, and understand more deeply.
+                            <p className="text-base tracking-wide mt-3">Ment(ally) is a group psychotherapy practice based in Mumbai, offering both in-person and online therapy across the globe. </p>
+                            <p className="text-base tracking-wide mt-3">A collaborative, multispecialty practice supporting people across age groups, identities, and lived experiences. A space to grow, heal, and understand more deeply.
                             </p>
-                            <p className="text-lg mt-3">Our approach is trauma-informed, culturally responsive, and client centered. We believe therapy should feel safe, thoughtful, and non-judgmental — a space where you can slow down and understand yourself more clearly.
+                            <p className="text-base tracking-wide mt-3">Our approach is trauma-informed, culturally responsive, and client centered. We believe therapy should feel safe, thoughtful, and non-judgmental — a space where you can slow down and understand yourself more clearly.
                             </p>
-                            <p className="text-lg mt-3">We build therapy around the person — not just the concern.
+                            <p className="text-base tracking-wide mt-3">We build therapy around the person — not just the concern.
                             </p>
                         </div>
                         <div className="py-10">

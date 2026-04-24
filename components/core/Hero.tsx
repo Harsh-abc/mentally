@@ -41,7 +41,7 @@ export default function Hero() {
 
   return (
     <>
-      <section className="relative h-screen">
+      <section id="hero" className="relative h-screen">
         <div className="w-full relative top-70 left-20">
           <h1 className="text-9xl text-white w-[55%] font-crimson font-semibold">
             Your Ally In Mental Health And Beyond.
@@ -111,7 +111,7 @@ export default function Hero() {
           </div>
         </div>
       </section>
-      <section className="relative h-screen">
+      <section id="hero1" className="relative h-screen">
         <div className="relative h-screen">
           <div className="absolute top-100 left-[50%] transform translate-x-[-50%] flex items-center justify-center gap-2 ">
             <Label className="text-3xl font-crimson text-white">Ment(ally)</Label>

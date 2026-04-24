@@ -11,26 +11,45 @@ import CTA from "../common/CTA";
 export function Navbar() {
   const [open, setOpen] = React.useState(false);
   const scrolled = useScroll(10);
-  const [darkNav, setDarkNav] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   const links = [
     {
+      label: "hero",
+      href: "#hero",
+    },
+    // {
+    //   label: "hero1",
+    //   href: "#hero1",
+    // },
+    {
       label: "About",
-      href: "#",
+      href: "#aboutScroll",
     },
     {
       label: "Services",
-      href: "#",
+      href: "#howItWork",
     },
     {
       label: "Meet the team",
-      href: "#",
+      href: "#team",
     },
     {
       label: "Resources",
-      href: "#",
+      href: "#resources",
     },
   ];
+
+  // Define color schemes for different sections
+  const sectionColors = {
+    hero: { text: "text-white", bg: "bg-transparent" },
+    // hero1: { text: "text-white", bg: "bg-transparent" },
+    aboutScroll: { text: "text-(--navText)", bg: "bg-transparent" }, // Changed from 'about' to 'aboutScroll'
+    howItWork: { text: "text-(--navText)", bg: "bg-transparent" },
+    team: { text: "text-(--navText)", bg: "bg-transparent" },
+    resources: { text: "text-(--navText)", bg: "bg-transparent" },
+    default: { text: "text-(--navText)", bg: "bg-transparent" },
+  };
 
   React.useEffect(() => {
     if (open) {
@@ -44,62 +63,92 @@ export function Navbar() {
   }, [open]);
 
   useEffect(() => {
-    const section = document.getElementById("aboutScroll");
+    // Get all sections to observe
+    const sections = [
+      { id: "hero", element: document.getElementById("hero") },
+      { id: "aboutScroll", element: document.getElementById("aboutScroll") },
+      { id: "howItWork", element: document.getElementById("howItWork") },
+      { id: "team", element: document.getElementById("team") },
+      { id: "resources", element: document.getElementById("resources") },
+    ].filter((section) => section.element !== null);
+
+    // Log found sections for debugging
+    console.log("Found sections:", sections.map(s => s.id));
+
+    const observerOptions = {
+      root: null,
+      rootMargin: "-20% 0px -20% 0px", // Changed to be less strict
+      threshold: 0.1, // Changed from 0 to 0.1
+    };
+
+    const observerCallback = (entries: any[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.getAttribute("id");
+          console.log("Active section:", sectionId); // Debug log
+          setActiveSection(sectionId || "");
+        }
+      });
+    };
 
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setDarkNav(true);
-        } else {
-          setDarkNav(false);
-        }
-      },
-      {
-        threshold: 0.9,
-      },
+      observerCallback,
+      observerOptions
     );
 
-    // console.log(observer);
-
-    if (section) observer.observe(section);
+    // Observe all sections
+    sections.forEach(({ element }) => {
+      if (element) observer.observe(element);
+    });
 
     return () => {
-      if (section) observer.unobserve(section);
+      sections.forEach(({ element }) => {
+        if (element) observer.unobserve(element);
+      });
     };
   }, []);
+
+  // Get current colors based on active section
+  const currentColors =
+    sectionColors[activeSection as keyof typeof sectionColors] ||
+    sectionColors.default;
+
+  // Debug log
+  console.log("Current active section:", activeSection);
+  console.log("Current colors:", currentColors);
 
   return (
     <header
       className={cn(
-        "fixed top-0 z-100 w-full pt-[20px] transition-colors duration-500",
+        "fixed top-0 z-[100] w-full pt-[20px] transition-all duration-500",
+        currentColors.bg,
         {
-          "bg-transparent": !darkNav,
-          "bg-white": darkNav,
-          "supports-backdrop-filter:bg-background/1 bg-transparent backdrop-blur-xs":
-            scrolled,
-        },
+          "supports-backdrop-filter:bg-background/1 backdrop-blur-xs": scrolled,
+        }
       )}
     >
       <nav
-        className={`mx-auto flex h-14 w-full max-w-7xl items-center justify-between px-0 `}
+        className={`mx-auto flex h-14 w-full max-w-7xl items-center justify-between px-4`}
       >
-        <div className={darkNav ? "text-(--navText)" : "text-white"}>
-          <h1 className="font-crimson text-3xl  tracking-[2px]">ment(ally)</h1>
+        <div
+          className={cn("transition-colors duration-500", currentColors.text)}
+        >
+          <h1 className="font-crimson text-3xl tracking-[2px]">ment(ally)</h1>
         </div>
         <div className="hidden items-center gap-10 md:flex">
           {links.map((link) => (
             <a
               key={link.label}
-              className={`uppercase text-xs font-bold ${darkNav ? "text-(--navText)" : "text-white"
-                }`}
+              className={cn(
+                "uppercase text-xs font-bold transition-colors duration-500",
+                currentColors.text
+              )}
               href={link.href}
             >
               {link.label}
             </a>
           ))}
-          <Button
-            className={"bg-(--cta-button) py-5 rounded-full"}
-          >
+          <Button className={"bg-(--cta-button) py-5 rounded-full"}>
             <CTA
               text={"Book A Session"}
               className={"bg-cta-button"}
@@ -107,7 +156,6 @@ export function Navbar() {
               dotClassName={"bg-white"}
             />
           </Button>
-          {/* <BookSession /> */}
         </div>
         <Button
           size="icon"
@@ -156,7 +204,7 @@ function MobileMenu({ open, children, className, ...props }: MobileMenuProps) {
       id="mobile-menu"
       className={cn(
         "bg-background/95 supports-[backdrop-filter]:bg-background/50 backdrop-blur-lg",
-        "fixed top-14 right-0 bottom-0 left-0 z-40 flex flex-col overflow-hidden border-y md:hidden",
+        "fixed top-14 right-0 bottom-0 left-0 z-40 flex flex-col overflow-hidden border-y md:hidden"
       )}
     >
       <div
@@ -164,14 +212,14 @@ function MobileMenu({ open, children, className, ...props }: MobileMenuProps) {
         className={cn(
           "data-[slot=open]:animate-in data-[slot=open]:zoom-in-97 ease-out",
           "size-full p-4",
-          className,
+          className
         )}
         {...props}
       >
         {children}
       </div>
     </div>,
-    document.body,
+    document.body
   );
 }
 

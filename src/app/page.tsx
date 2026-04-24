@@ -10,6 +10,8 @@ import Testimonials from "@/components/core/Testimonials";
 import FooterDemo from "@/components/core/Footer";
 import WhyMentally from "@/components/core/WhyMentally";
 import Works from "@/components/core/Works";
+import ReachOut from "@/components/core/ReachOut";
+import Footer from "@/components/core/Footer";
 // import MarqueeText from "@/components/common/MarqueeText";
 
 export default function Home() {
@@ -30,7 +32,8 @@ export default function Home() {
         <Works />
         <WhyMentally />
         <Testimonials />
-        {/* <FooterDemo /> */}
+        <ReachOut/>
+        <Footer />
       </main>
 
     </div>
