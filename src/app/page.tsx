@@ -12,6 +12,7 @@ import WhyMentally from "@/components/core/WhyMentally";
 import Works from "@/components/core/Works";
 import ReachOut from "@/components/core/ReachOut";
 import Footer from "@/components/core/Footer";
+import ByTheNumbers from "@/components/core/ByTheNumbers";
 // import MarqueeText from "@/components/common/MarqueeText";
 
 export default function Home() {
@@ -31,6 +32,7 @@ export default function Home() {
         <AboutHero />
         <Works />
         <WhyMentally />
+        <ByTheNumbers />
         <Testimonials />
         <ReachOut/>
         <Footer />

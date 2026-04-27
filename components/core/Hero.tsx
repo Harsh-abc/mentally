@@ -43,8 +43,8 @@ export default function Hero() {
     <>
       <section id="hero" className="relative h-screen">
         <div className="w-full relative top-70 left-20">
-          <h1 className="text-9xl text-white w-[55%] font-crimson font-semibold">
-            Your Ally In Mental Health And Beyond.
+          <h1 className="text-9xl text-white w-[55%] font-heading font-semibold">
+            Your ally In Mental Health and Beyond.
           </h1>
         </div>
         <div className="w-full relative top-10 left-[68%]">

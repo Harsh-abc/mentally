@@ -1,7 +1,8 @@
+// src/app/layout.tsx
 import type { Metadata } from "next";
 import { Inter, Crimson_Text } from "next/font/google";
 import "./globals.css";
-
+import { myFont } from './fonts';
 
 const inter = Inter({
   subsets: ["latin"],
@@ -30,7 +31,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${crimson.variable} h-full antialiased`}
+      className={`${inter.variable} ${crimson.variable} ${myFont.variable} h-full antialiased`}
     >
       <body className="">{children}</body>
     </html>

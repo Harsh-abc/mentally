@@ -3,7 +3,6 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -11,7 +10,7 @@
   --color-foreground: var(--foreground);
   --font-inter: var(--font-inter);
   --font-crimson: var(--font-crimson);
-  --font-heading: var(--font-sans);
+  --font-heading: var(--font-myfont);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -52,9 +51,6 @@
   --navText: var(--navText);
   --headingText: var(--headingText);
   --btnBG: var(--btnBG);
-
-  /* custome fonts */
-  --font-heading: "Cormorant Garamond", serif;
   --font-body: "Jost", sans-serif;
 }
 
@@ -97,7 +93,6 @@
   --navText: #7FA698;
   --headingText: #7FA698;
   --btnBG: #7FA698;
-  --font-heading: var(--font-heading)
 }
 
 .dark {
@@ -132,17 +127,31 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
-
 }
-
 
 body {
   font-family: var(--font-body);
   overflow-x: hidden;
 }
 
+/* Existing class */
 .heading-font {
-  font-family: var(--font-heading);
+  font-family: var(--font-myfont);
+}
+
+/* Add Tailwind utility classes */
+@layer utilities {
+  .font-heading {
+    font-family: var(--font-myfont);
+  }
+  
+  .font-crimson {
+    font-family: var(--font-crimson);
+  }
+  
+  .font-body {
+    font-family: var(--font-body);
+  }
 }
 
 @layer base {
@@ -159,8 +168,7 @@ body {
   }
 }
 
-
-
+/* Rest of your existing CSS... */
 
 .hk-toggle-grid {
   display: grid;
@@ -317,12 +325,26 @@ body {
   z-index: 2;
   padding: 100px;
 }
+
 /* 
 .reach-out-section input + label{
   font-weight: 300;
 } */
 
-input:checked + label {
+input:checked+label {
   background-color: var(--btnBG);
   border-color: var(--btnBG);
+}
+
+.gradient-generator::after {
+  position: absolute;
+  content: "";
+  inset: 0;
+  /* shorthand for top/left/width/height */
+  z-index: 11;
+  background: linear-gradient(to top,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0.8) 25%,
+      rgba(255, 255, 255, 0.4) 55%,
+      rgba(255, 255, 255, 0) 100%);
 }

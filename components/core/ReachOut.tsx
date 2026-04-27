@@ -17,18 +17,20 @@ export default function ReachOut() {
   const active = "bg-blue-500 text-white border-blue-500";
   const inactive = "bg-gray-200 text-gray-800 hover:bg-gray-300 border-gray-300";
   return (
-    <section className="bg-background px-10 reach-out-section">
+    <section className="bg-background px-10 reach-out-section pt-20">
       <header className="max-w-4xl w-full mb-6">
-        <h2 className="text-8xl font-semibold text-left font-heading">Begin where you are.
+        <h2 className="text-5xl font-semibold text-left font-heading " style={{ fontFamily: 'var(--font-myfont)' }}>Begin where you are.
+        {/* <h2 className="text-8xl font-semibold text-left font-heading">Begin where you are. */}
         </h2>
-        <h3 className="text-7xl font-semibold text-left text-(--headingText) font-heading ml-38">We'll meet you there.</h3>
+        <h3 className="text-5xl font-semibold text-left text-(--headingText) font-heading mt-3">We'll meet you there.</h3>
+         {/* ml-38 */}
         <p className="text-left text-base tracking-wide mt-4 capitalize w-2xl">You don't need to have everything figured out. A conversation is enough to start.</p>
 
       </header>
 
       <div className="grid grid-cols-2 border-t">
         <div className="p-13 border-r flex flex-col items-center justify-start">
-          <div className="max-w-sm">
+          <div className="max-w-md">
             <h4 className="text-sm uppercase text-black/50 tracking-wide mb-4">Book a consultation</h4>
             <fieldset className="mb-6">
               {/* <div>
@@ -119,15 +121,15 @@ export default function ReachOut() {
               <CalScheduleBtn />
 
             </div>
-            <ul className="space-y-2 list-disc list-inside">
-              {scheduleLists.map((item, index) => <li key={index} className="text-sm text-black/50 tracking-wide flex items-start gap-2 list-disc">{item}</li>)}
+            <ul className="space-y-1 list-disc list-inside mt-5" style={{listStyle: "disc !important"}}>
+              {scheduleLists.map((item, index) => <li key={index} className="text-sm text-black/50 tracking-wide flex items-start gap-2 list-disc">- {item}</li>)}
             </ul>
           </div>
         </div>
         <div className="p-13 flex flex-col items-center justify-start">
           <div className="max-w-md">
             <h4 className="text-sm uppercase text-black/50 tracking-wide mb-4">Or send us a message</h4>
-            <form className="space-y-1.5">
+            <form className="space-y-2">
               <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label htmlFor="first-name"

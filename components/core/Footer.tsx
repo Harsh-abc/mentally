@@ -47,13 +47,13 @@ export default function Footer() {
     ]
 
     return (
-        <footer className="bg-white px-14 py-10">
-            <div className="shadow-[0px_0px_10px_5px_rgba(0,0,0,0.1)] rounded-4xl px-14 py-10">
-                <div className="grid grid-cols-5 gap-10 pb-10 border-b border-black/50">
+        <footer className="bg-white px-14 py-10 relative">
+            <div className="shadow-[0px_0px_6px_1px_rgba(0,0,0,0.1)] rounded-4xl px-14 py-10">
+                <div className="grid grid-cols-5 gap-10 pb-10 border-b border-black/10">
                     <div className="col-span-2">
                         <h2 className="font-crimson text-3xl tracking-[2px] mb-2">ment(ally)</h2>
                         {/* <p>your <span>ally</span> in mental health and beyond</p> */}
-                        <p className="text-sm text-black/50 tracking-wide mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis quia corrupti ex magni quasi molestiae iste tenetur ea eaque velit!</p>
+                        <p className="text-sm text-black/50 tracking-wide mb-5">Healing happens in connection. You don't need to have it figured out - you just need a starting point.</p>
 
                         <ul className="space-y-2">
                             {contactDetails.map(({ label: Label, value }, index) => (
@@ -114,16 +114,19 @@ export default function Footer() {
                     </div>
                 </div>
 
-                <div className="pb-10 border-b border-black/50">
-                    <p className="text-sm text-center text-black/50 mt-10">Healing happens in connection. You don't need to have it figured out - you just need a starting point.</p>
-                </div>
+                {/* <div className="pb-5 border-b border-black/10">
+                    <p className="text-sm text-center text-black/50 mt-5">Healing happens in connection. You don't need to have it figured out - you just need a starting point.</p>
+                </div> */}
 
-                <ul className="flex justify-center gap-6 mt-6">
+                <ul className="flex justify-around gap-6 mt-10">
                     <li><p className="text-sm text-black/50 tracking-wide">© 2025 Ment(ally). All rights reserved.</p></li>
                     <li><p className="text-sm text-black/50 tracking-wide">Privacy Policy</p></li>
                     <li><p className="text-sm text-black/50 tracking-wide">Terms of Service</p></li>
                     <li><p className="text-sm text-black/50 tracking-wide flex items-center"><LucideShield /> Confidential & safe space</p></li>
                 </ul>
+            </div>
+            <div className="relative h-55 overflow-hidden gradient-generator mt-10">
+                <h2 className="absolute top-0 text-[310px] text-center leading-[220px] font-bold w-full mt-8 font-heading z-1">Ment(ally)</h2>
             </div>
         </footer>
     );
