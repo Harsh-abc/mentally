@@ -13,6 +13,7 @@ import Works from "@/components/core/Works";
 import ReachOut from "@/components/core/ReachOut";
 import Footer from "@/components/core/Footer";
 import ByTheNumbers from "@/components/core/ByTheNumbers";
+import HowWeBegins from "@/components/core/HowWeBegins";
 // import MarqueeText from "@/components/common/MarqueeText";
 
 export default function Home() {
@@ -33,6 +34,7 @@ export default function Home() {
         <Works />
         <WhyMentally />
         <ByTheNumbers />
+        <HowWeBegins />
         <Testimonials />
         <ReachOut/>
         <Footer />
