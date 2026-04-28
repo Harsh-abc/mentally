@@ -200,7 +200,7 @@ export default function WhyMentally() {
               className="text-6xl font-normal text-[#2d2d2d] mt-4 leading-tight"
               style={{ fontFamily: "var(--font-myfont)" }}
             >
-              The name is <span className="italic font-light">intentional</span>.
+              The name is <span className="italic font-light text-(--headingText)">intentional</span>.
             </h2>
             <p className="text-left text-lg text-black/60 tracking-wide mt-6 leading-relaxed max-w-2xl">
               The word "mentally" has often been used carelessly or critically. We believe
