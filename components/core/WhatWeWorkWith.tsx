@@ -6,67 +6,67 @@ export default function WhatWeWorkWith() {
             title: "Anxiety & Emotional Overwhelm",
             description:
                 "Overthinking, racing thoughts, constant stress, difficulty switching off.",
-            img: "/assets/WhatWeWorkWith/anxiety.jpg",
+            img: "/assets/WhatWeWorkWith/Anxiety-Emotional-Overwhelm.jpg",
         },
         {
             title: "Trauma & Attachment Patterns",
             description:
                 "Childhood experiences, relational wounds, and repeating emotional patterns in relationships.",
-            img: "/assets/WhatWeWorkWith/trauma.jpg",
+            img: "/assets/WhatWeWorkWith/Trauma-Attachment.jpg",
         },
         {
             title: "Relationships & Intimacy",
             description:
                 "Communication struggles, conflict, trust concerns, and fear of disconnection.",
-            img: "/assets/WhatWeWorkWith/relationships.jpg",
+            img: "/assets/WhatWeWorkWith/Relationships-Intimacy.jpg",
         },
         {
             title: "Life Transitions",
             description:
                 "Marriage, breakups, relocation, career shifts, parenthood, and identity changes.",
-            img: "/assets/WhatWeWorkWith/life-transitions.jpg",
+            img: "/assets/WhatWeWorkWith/Life-Transitions.jpg",
         },
         {
             title: "Couples Therapy",
             description:
                 "Strengthening communication, rebuilding trust, and navigating commitment together.",
-            img: "/assets/WhatWeWorkWith/couples-therapy.jpg",
+            img: "/assets/WhatWeWorkWith/Couples-Therapy.jpg",
         },
         {
             title: "Family Therapy",
             description:
                 "Reducing conflict, improving communication, and supporting healthier family dynamics.",
-            img: "/assets/WhatWeWorkWith/family-therapy.jpg",
+            img: "/assets/WhatWeWorkWith/Adolescence-Struggles.jpg",
         },
         {
             title: "Relocation & Cultural Adjustment",
             description:
                 "Moving abroad, adapting to new environments, and navigating identity and belonging.",
-            img: "/assets/WhatWeWorkWith/relocation.jpg",
+            img: "/assets/WhatWeWorkWith/Relocation-Cultural-Adjustment.jpg",
         },
         {
             title: "Work Stress & Burnout",
             description:
                 "High responsibility, invisible pressure, emotional exhaustion, and loss of balance.",
-            img: "/assets/WhatWeWorkWith/work-stress.jpg",
+            img: "/assets/WhatWeWorkWith/Work-Stress-Burnout.jpg",
         },
         {
             title: "Adolescence Struggles",
             description:
                 "Identity exploration, peer pressure, emotional ups and downs, and self-esteem challenges.",
-            img: "/assets/WhatWeWorkWith/adolescence.jpg",
+            img: "/assets/WhatWeWorkWith/Adolescence-Struggles.jpg",
         },
         {
             title: "Body Image",
             description:
                 "Concerns around appearance, self-perception, and developing a healthier relationship with your body.",
-            img: "/assets/WhatWeWorkWith/body-image.jpg",
+            img: "/assets/WhatWeWorkWith/Body-Image.jpg",
         },
         {
             title: "Self Worth",
             description:
                 "Building confidence, overcoming self-doubt, and developing a stronger sense of self-value.",
-            img: "/assets/WhatWeWorkWith/self-worth.jpg",
+            img: "/assets/WhatWeWorkWith/Self-worth.jpg",
         }
     ];
     return (
