@@ -38,7 +38,7 @@ export default function Home() {
         <WhatWeWorkWith />
         <HowWeBegins />
         <Testimonials />
-        <ReachOut/>
+        <ReachOut />
         <Footer />
       </main>
 

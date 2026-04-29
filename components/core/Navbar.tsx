@@ -24,7 +24,7 @@ export function Navbar() {
     // },
     {
       label: "About",
-      href: "#aboutScroll",
+      href: "/about-us",
     },
     {
       label: "Services",
