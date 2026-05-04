@@ -42,17 +42,17 @@ export default function Hero() {
 
   return (
 
-    <section id="hero" className="relative h-screen z-100">
+    <section id="hero" className="relative h-screen z-100 bg-butter">
       <div className=" flex flex-col justify-center h-screen w-full relative z-1000">
         <div className="relative z-10 flex items-center justify-center w-full">
-          <h1 className="text-xl font-medium text-center text-bronze border  px-10 capitalize font-heading py-0.5 rounded-full border-grey-soft">Strong Start here</h1>
+          {/* <h1 className="text-xl font-medium text-center text-bronze border font-crimson  px-10 capitalize py-0.2 rounded-full border-grey-">Strong Start here</h1> */}
         </div>
-        <div className="flex items-center justify-center w-full mt-10">
+        <div className="flex items-center justify-center w-full mt-5">
           <h1 className="text-8xl w-[70%] text-center font-heading text-bronze font-bold">Your ally In Mental <br /> Health and Beyond.</h1>
 
         </div>
         <div className="flex items-center justify-center">
-          <p className="w-[50%] text-center text-black/40 text-md mt-4">
+          <p className="w-[50%] text-center text-black/60 text-md mt-4">
             We offer therapy and coaching to help you navigate life’s challenges
             with confidence and care. Together, we’ll build personal insight,
             emotional well-being, and the steps needed for lasting change — at
@@ -60,7 +60,7 @@ export default function Hero() {
           </p>
         </div>
         <div className="flex items-center justify-center mt-8">
-          <CTA text={'Book a session'} className={'bg-grey-soft py-2 px-1 rounded-[25px]'} className1={'uppercase text-sm text-bronze'} dotClassName={'bg-bronze'} href={'/book-session'} />
+          <CTA text={'Book a session'} className={'bg-bronze py-2 px-1 rounded-[25px]'} className1={'uppercase text-sm text-white'} dotClassName={'bg-white'} href={'/book-session'} />
         </div>
 
 
@@ -71,7 +71,9 @@ export default function Hero() {
         <div className="left-b circle"></div>
       </div>
 
-
+      <div className="absolute top-50 -left-10  z-10000">
+        <img src="/assets/WhatWeWorkWith/03.jpg" alt="" className="w-[320px] h-60 object-cover rounded-[15px]"/>
+      </div>
       <div className="absolute bottom-5 right-5  z-10000">
         <video playsInline autoPlay loop muted className="w-[350px] rounded-[15px]" >
           <source src="/assets/video/home-bg-video.mp4" type="video/mp4" />

@@ -48,7 +48,7 @@ export default function Footer() {
     ]
 
     return (
-        <footer className="bg-bronze px-0 py-10 relative rounded-t-[25px] z-10">
+        <footer className="bg-bronze px-0 py-10 relative rounded-t-[25px] z-100">
             <div className="px-10 py-10">
                 <div className="grid grid-cols-5 gap-10 ">
                     <div className="col-span-2">

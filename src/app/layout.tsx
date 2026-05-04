@@ -4,7 +4,7 @@ import { Inter, Crimson_Text } from "next/font/google";
 import "./globals.css";
 import "./masters.css"
 import { myFont } from './fonts';
-import LoaderWrapper from "@/components/core/LoaderWrapper";
+// import LoaderWrapper from "@/components/core/LoaderWrapper";
 import Navbar from "@/components/core/Navbar";
 import Footer from "@/components/core/Footer";
 
@@ -41,9 +41,9 @@ export default function RootLayout({
     >
       <body className="">
         <Navbar />
-        <LoaderWrapper>
-          {children}
-        </LoaderWrapper>
+        {/* <LoaderWrapper>
+        </LoaderWrapper> */}
+        {children}
         <Footer />
       </body>
     </html>

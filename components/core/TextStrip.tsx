@@ -36,7 +36,7 @@ export default function TextStrip({ text }: any) {
 
     return (
         <section
-            className="textStrip h-24 bg-bronze overflow-hidden flex items-center relative z-100 hover:cursor-pointer"
+            className="textStrip h-16 bg-fawn overflow-hidden flex items-center relative z-100 hover:cursor-pointer"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
@@ -48,10 +48,13 @@ export default function TextStrip({ text }: any) {
                     Where curiosity replaces judgment, and healing happens in connection.
                 </span> */}
 
-                <span className="text-5xl uppercase font-bold text-grey-soft mr-20">
+                <span className="text-3xl uppercase font-bold text-black/80 mr-1">
                     {text}
                 </span>
-                <span className="text-5xl uppercase font-bold text-grey-soft mr-20">
+                <span className="text-3xl uppercase font-bold text-black/80 mr-1">
+                    {text}
+                </span>
+                <span className="text-3xl uppercase font-bold text-black/80 mr-1">
                     {text}
                 </span>
             </div>

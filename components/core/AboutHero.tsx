@@ -4,7 +4,7 @@ import CTA from "../common/CTA";
 
 export default function AboutHero() {
     return (
-        <section className="px-20 py-24 relative z-100">
+        <section className="px-20 py-24 relative z-100 bg-blush">
             <div className="grid grid-cols-3 gap-8">
                 <div>
                     <header className="max-w-4xl w-full mb-6">

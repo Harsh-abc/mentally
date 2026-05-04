@@ -12,11 +12,11 @@ type CardsProps = {
     index: number
 }
 
-
+// style={{ backgroundImage: `url(${img})`, objectFit: 'contain' }}
 
 const Card = ({ title, copy, index, img }: CardsProps) => {
     return (
-        <div className="card relative " id={`card-${index + 1}`}>
+        <div className="card relative h-[50vh] w-full object-cover" id={`card-${index + 1}`} >
             <div className="card-inner relative will-change-transform w-full h-full p-[2em] flex gap-[4em] hover:cursor-pointer">
                 <div className="card-content flex flex-col justify-between flex-3 px-5">
                     <h1 className="text-5xl text-white font-normal font-heading">{title}</h1>
@@ -38,23 +38,23 @@ export default function WhatWeWork() {
         {
             title: 'Life Transitions',
             copy: '  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio voluptatum ullam tempore dolores vitae laboriosam animi assumenda obcaecati, corporis quos atque blanditiis exercitationem sapiente culpa explicabo incidunt itaque voluptatem nostrum aliquam porro accusamus? Alias et corrupti laudantium hic animi quisquam?',
-            img: '/assets/WhatWeWorkWith/Life-Transitions.jpg'
+            img: '/assets/WhatWeWorkWith/01.jpg'
         },
         {
             title: 'Couples Therapy',
             copy: '  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio voluptatum ullam tempore dolores vitae laboriosam animi assumenda obcaecati, corporis quos atque blanditiis exercitationem sapiente culpa explicabo incidunt itaque voluptatem nostrum aliquam porro accusamus? Alias et corrupti laudantium hic animi quisquam?',
-            img: '/assets/WhatWeWorkWith/Couples-Therapy.jpg'
+            img: '/assets/WhatWeWorkWith/02.jpg'
         },
         {
             title: 'Family Therapy',
             copy: '  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio voluptatum ullam tempore dolores vitae laboriosam animi assumenda obcaecati, corporis quos atque blanditiis exercitationem sapiente culpa explicabo incidunt itaque voluptatem nostrum aliquam porro accusamus? Alias et corrupti laudantium hic animi quisquam?',
-            img: '/assets/WhatWeWorkWith/anxiety.jpg'
+            img: '/assets/WhatWeWorkWith/03.jpg'
 
         },
         {
             title: 'Work Stress & Burnout',
             copy: '  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio voluptatum ullam tempore dolores vitae laboriosam animi assumenda obcaecati, corporis quos atque blanditiis exercitationem sapiente culpa explicabo incidunt itaque voluptatem nostrum aliquam porro accusamus? Alias et corrupti laudantium hic animi quisquam?',
-            img: '/assets/WhatWeWorkWith/Work-Stress-Burnout.jpg'
+            img: '/assets/WhatWeWorkWith/04.jpg'
         },
     ]
 
