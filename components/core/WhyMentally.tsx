@@ -188,7 +188,7 @@ export default function WhyMentally() {
   }, []);
 
   return (
-    <section className="bg-[#faf9f7] px-20 py-24 min-h-screen">
+    <section className="px-20 py-24 min-h-screen">
       <div className="flex items-start justify-around">
         <div className="max-w-xl w-full mx-auto">
           {/* Header */}

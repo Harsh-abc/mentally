@@ -21,10 +21,11 @@ export default function Footer() {
 
     const navigateTo = [
         { label: "Home", url: "/" },
-        { label: "About Us", url: "/about" },
-        { label: "Services", url: "/services" },
-        { label: "Blog", url: "/blog" },
-        { label: "Contact", url: "/contact" }
+        { label: "About Us", url: "/" },
+        { label: "Services", url: "#" },
+        { label: "Meet the team", url: "#" },
+        { label: "Resources", url: "/" },
+        { label: "Book a session", url: "/" }
     ]
 
     const weSupport = [
@@ -47,19 +48,19 @@ export default function Footer() {
     ]
 
     return (
-        <footer className="bg-white px-14 py-10 relative">
-            <div className="shadow-[0px_0px_6px_1px_rgba(0,0,0,0.1)] rounded-4xl px-14 py-10">
-                <div className="grid grid-cols-5 gap-10 pb-10 border-b border-black/10">
+        <footer className="bg-bronze px-0 py-10 relative rounded-t-[25px] z-10">
+            <div className="px-10 py-10">
+                <div className="grid grid-cols-5 gap-10 ">
                     <div className="col-span-2">
-                        <h2 className="font-crimson text-3xl tracking-[2px] mb-2">ment(ally)</h2>
+                        <h2 className="font-heading text-3xl tracking-[2px] mb-2 text-grey-soft font-bold">ment(ally)</h2>
                         {/* <p>your <span>ally</span> in mental health and beyond</p> */}
-                        <p className="text-sm text-black/50 tracking-wide mb-5">Healing happens in connection. You don't need to have it figured out - you just need a starting point.</p>
+                        <p className="text-md text-grey-soft tracking-wide mb-5">Healing happens in connection. You don't need to have it figured out - you just need a starting point.</p>
 
                         <ul className="space-y-2">
                             {contactDetails.map(({ label: Label, value }, index) => (
                                 <li key={index} className="flex items-center gap-2">
-                                    <Label className="w-5 h-5 text-sm text-black/50 tracking-wide" />
-                                    <span className="text-sm text-black/50 tracking-wide">{value}</span>
+                                    <Label className="w-5 h-5 text-sm text-fawn tracking-wide" />
+                                    <span className="text-sm text-grey-soft tracking-wide">{value}</span>
                                 </li>
                             ))}
                         </ul>
@@ -71,9 +72,9 @@ export default function Footer() {
                                         href={url}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="w-9 h-9 flex items-center justify-center border border-black/50 rounded-full hover:opacity-70 transition-opacity"
+                                        className="w-9 h-9 flex items-center justify-center border border-white/30 rounded-full hover:opacity-70 transition-opacity"
                                     >
-                                        <Icon className="w-4 h-4" />
+                                        <Icon className="w-4 h-4 text-grey-soft" />
                                     </a>
                                 </li>
                             ))}
@@ -81,33 +82,33 @@ export default function Footer() {
                     </div>
 
                     <div className="col-span-1">
-                        <h3 className="font-semibold text-lg mb-4">Navigate</h3>
+                        <h3 className="font-bold text-grey-soft text-xl  mb-4 font-heading">Quick LInks</h3>
                         <ul className="flex flex-col gap-2">
                             {navigateTo.map(({ label, url }, index) => (
                                 <li key={index}>
-                                    <a href={url} className="text-sm text-black/50 tracking-wide hover:underline">{label}</a>
+                                    <a href={url} className="text-sm text-black/50 tracking-wide hover:underline text-grey-soft">{label}</a>
                                 </li>
                             ))}
                         </ul>
                     </div>
 
                     <div className="col-span-1">
-                        <h3 className="font-semibold text-lg mb-4">We Support</h3>
+                        <h3 className="font-bold text-grey-soft text-xl  mb-4 font-heading">We Support</h3>
                         <ul className="flex flex-col gap-2">
                             {weSupport.map(({ label }, index) => (
                                 <li key={index}>
-                                    <span className="text-sm text-black/50 tracking-wide">{label}</span>
+                                    <span className="text-sm text-black/50 tracking-wide text-grey-soft">{label}</span>
                                 </li>
                             ))}
                         </ul>
                     </div>
 
                     <div className="col-span-1">
-                        <h3 className="font-semibold text-lg mb-4">How We Work</h3>
-                        <ul className="flex flex-col gap-2">
+                        <h3 className="font-bold text-grey-soft text-xl  mb-4 font-heading">How We Work</h3>
+                        <ul className="flex flex-col gap-2 ">
                             {howWeWork.map(({ label }, index) => (
                                 <li key={index}>
-                                    <span className="text-sm text-black/50 tracking-wide">{label}</span>
+                                    <span className="text-sm text-black/50 tracking-wide text-grey-soft">{label}</span>
                                 </li>
                             ))}
                         </ul>
@@ -118,16 +119,14 @@ export default function Footer() {
                     <p className="text-sm text-center text-black/50 mt-5">Healing happens in connection. You don't need to have it figured out - you just need a starting point.</p>
                 </div> */}
 
-                <ul className="flex justify-around gap-6 mt-10">
+                {/* <ul className="flex justify-around gap-6 mt-10">
                     <li><p className="text-sm text-black/50 tracking-wide">© 2025 Ment(ally). All rights reserved.</p></li>
                     <li><p className="text-sm text-black/50 tracking-wide">Privacy Policy</p></li>
                     <li><p className="text-sm text-black/50 tracking-wide">Terms of Service</p></li>
                     <li><p className="text-sm text-black/50 tracking-wide flex items-center"><LucideShield /> Confidential & safe space</p></li>
-                </ul>
+                </ul> */}
             </div>
-            <div className="relative h-55 overflow-hidden gradient-generator mt-10">
-                <h2 className="absolute top-0 text-[310px] text-center leading-[220px] font-bold w-full mt-8 font-heading z-1">Ment(ally)</h2>
-            </div>
+
         </footer>
     );
 }

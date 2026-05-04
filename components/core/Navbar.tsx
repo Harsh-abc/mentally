@@ -1,230 +1,266 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { MenuToggleIcon } from "@/components/ui/menu-toggle-icon";
-import { useScroll } from "@/components/use-scroll";
-import { createPortal } from "react-dom";
-import { BookSession } from "../common/BookSession";
-import CTA from "../common/CTA";
 
-export function Navbar() {
-  const [open, setOpen] = React.useState(false);
-  const scrolled = useScroll(10);
-  const [activeSection, setActiveSection] = useState("");
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import SplitText from "gsap/SplitText";
+import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(SplitText);
 
-  const links = [
-    {
-      label: "hero",
-      href: "#hero",
-    },
-    // {
-    //   label: "hero1",
-    //   href: "#hero1",
-    // },
-    {
-      label: "About",
-      href: "/about-us",
-    },
-    {
-      label: "Services",
-      href: "#howItWork",
-    },
-    {
-      label: "Meet the team",
-      href: "#team",
-    },
-    {
-      label: "Resources",
-      href: "#resources",
-    },
-  ];
+export default function Navbar() {
+    const navRef = useRef<HTMLDivElement | null>(null);
+    
+    useEffect(() => {
+        if (!navRef.current) return;
 
-  // Define color schemes for different sections
-  const sectionColors = {
-    hero: { text: "text-white", bg: "bg-transparent" },
-    // hero1: { text: "text-white", bg: "bg-transparent" },
-    aboutScroll: { text: "text-(--navText)", bg: "bg-transparent" }, // Changed from 'about' to 'aboutScroll'
-    howItWork: { text: "text-(--navText)", bg: "bg-transparent" },
-    team: { text: "text-(--navText)", bg: "bg-transparent" },
-    resources: { text: "text-(--navText)", bg: "bg-transparent" },
-    default: { text: "text-(--navText)", bg: "bg-transparent" },
-  };
+        const ctx = gsap.context(() => {
+            const navToggle = document.querySelector(".nav-toggle") as HTMLElement | null;
+            const navToggleMenu = document.querySelector(".nav-toggle-menu") as HTMLElement | null;
+            const navToggleClose = document.querySelector(".nav-toggle-close") as HTMLElement | null;
 
-  React.useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
+            const menu = document.querySelector(".menu") as HTMLElement | null;
+            const menuBg = document.getElementById("menu-path") as SVGPathElement | null;
+            const menuBgSvg = document.querySelector(".menu-bg-svg") as SVGSVGElement | null;
+            const menuLogo = document.querySelector(".menu-logo") as HTMLElement | null;
 
-  useEffect(() => {
-    // Get all sections to observe
-    const sections = [
-      { id: "hero", element: document.getElementById("hero") },
-      { id: "aboutScroll", element: document.getElementById("aboutScroll") },
-      { id: "howItWork", element: document.getElementById("howItWork") },
-      { id: "team", element: document.getElementById("team") },
-      { id: "resources", element: document.getElementById("resources") },
-    ].filter((section) => section.element !== null);
+            const menuLinks = document.querySelectorAll(".menu-col-links a");
+            const menuInfoItems = document.querySelectorAll(
+                ".menu-col-info p, .menu-col-info h3,.menu-col-info h1, .menu-col-info h6 , .menu-col-info img,.menu-col .menu-col-content .info-mail span, .menu-col .menu-col-content .info-phone span, .menu-col-address span, .info-block.social-links .info-label, .info-block.social-links .social-links-list a"
+            );
 
-    // Log found sections for debugging
-    console.log("Found sections:", sections.map(s => s.id));
 
-    const observerOptions = {
-      root: null,
-      rootMargin: "-20% 0px -20% 0px", // Changed to be less strict
-      threshold: 0.1, // Changed from 0 to 0.1
-    };
+            if (!menuBg || !menuBgSvg || !navToggle) return;
 
-    const observerCallback = (entries: any[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const sectionId = entry.target.getAttribute("id");
-          console.log("Active section:", sectionId); // Debug log
-          setActiveSection(sectionId || "");
-        }
-      });
-    };
+            const svgWidth = menuBgSvg.viewBox.baseVal.width;
+            const svgHeight = menuBgSvg.viewBox.baseVal.height;
+            const svgCenterX = svgWidth / 2;
 
-    const observer = new IntersectionObserver(
-      observerCallback,
-      observerOptions
+            console.log(svgWidth, svgHeight, svgCenterX);
+
+            const OPEN_HIDDEN = `M${svgWidth},0 Q${svgCenterX},0 0,0 L0,0 L${svgWidth},0 Z`;
+            const OPEN_BULGE = `M${svgWidth},345 Q${svgCenterX},620 0,345 L0,0 L${svgWidth},0 Z`;
+            const OPEN_FULL = `M${svgWidth},${svgHeight} Q${svgCenterX},${svgHeight} 0,${svgHeight} L0,0 L${svgWidth},0 Z`;
+
+            const CLOSE_START = `M${svgWidth},0 Q${svgCenterX},0 0,0 L0,${svgHeight} L${svgWidth},${svgHeight} Z`;
+            const CLOSE_BULGE = `M${svgWidth},350 Q${svgCenterX},130 0,350 L0,${svgHeight} L${svgWidth},${svgHeight} Z`;
+            const CLOSE_HIDDEN = `M${svgWidth},${svgHeight} Q${svgCenterX},${svgHeight} 0,${svgHeight} L0,${svgHeight} L${svgWidth},${svgHeight} Z`;
+
+            let isAnimating = false;
+            let isOpen = false;
+
+
+            const splits: SplitText[] = [];
+            menuLinks.forEach((link) => {
+                const split = new SplitText(link as HTMLElement, {
+                    type: "chars",
+                    charsClass: "char",
+                });
+                splits.push(split);
+                gsap.set(split.chars, { opacity: 0, x: "750%" });
+            });
+
+            const menuLinksChars = splits.flatMap((s) => s.chars);
+
+            gsap.set(menuBg, { attr: { d: OPEN_HIDDEN } });
+            gsap.set(menuInfoItems, { opacity: 0, y: 100 });
+
+
+            const openMenu = () => {
+                if (!menu) return;
+
+                menu.classList.add("is-open");
+
+                gsap.set(menuLinks, { opacity: 1 });
+                gsap.set(menuLogo, { opacity: 1, delay: 1 });
+                gsap.to(navToggleMenu, { duration: 0.25, opacity: 0 });
+                gsap.to(navToggleClose, { duration: 0.25, opacity: 1, delay: 0.25 });
+
+                const tl = gsap.timeline({
+                    onComplete: () => (isAnimating = false),
+                });
+
+                tl.to(menuBg, {
+                    duration: 0.5,
+                    attr: { d: OPEN_BULGE },
+                    ease: "power4.in",
+                })
+                    .to(menuBg, {
+                        duration: 0.5,
+                        attr: { d: OPEN_FULL },
+                        ease: "power4.out",
+                    })
+                    .to(
+                        menuInfoItems,
+                        {
+                            duration: 0.75,
+                            opacity: 1,
+                            y: 0,
+                            stagger: 0.075,
+                        },
+                        "-=0.35"
+                    )
+                    .to(
+                        menuLinksChars,
+                        {
+                            duration: 1.2,
+                            x: "0%",
+                            stagger: 0.01,
+                            ease: "elastic.out(1, 0.25)",
+                        },
+                        0.45
+                    )
+                    .to(
+                        menuLinksChars,
+                        {
+                            duration: 0.6,
+                            opacity: 1,
+                            stagger: 0.01,
+                        },
+                        0.45
+                    );
+            };
+
+
+            const closeMenu = () => {
+                if (!menu) return;
+
+                gsap.set(menuBg, { attr: { d: CLOSE_START } });
+
+                gsap.to(navToggleClose, { duration: 0.3, opacity: 0 });
+                gsap.to(navToggleMenu, { duration: 0.3, opacity: 1, delay: 0.25 });
+
+                const tl = gsap.timeline({
+                    onComplete: () => {
+                        menu.classList.remove("is-open");
+
+                        gsap.set(menuBg, { attr: { d: OPEN_HIDDEN } });
+
+                        splits.forEach((s) => {
+                            gsap.set(s.chars, { opacity: 0, x: "750%" });
+                        });
+
+                        gsap.set(menuInfoItems, { opacity: 0, y: 100 });
+
+                        isAnimating = false;
+                    },
+                });
+
+                tl.to(menuLogo, { duration: 0.3, opacity: 0 })
+                    .to(menuLinks, { duration: 0.3, opacity: 0 }, "<")
+                    .to(menuInfoItems, { duration: 0.3, opacity: 0 }, "<")
+                    .to(
+                        menuBg,
+                        {
+                            duration: 0.5,
+                            attr: { d: CLOSE_BULGE },
+                            ease: "power3.in",
+                        },
+                        "<"
+                    )
+                    .to(menuBg, {
+                        duration: 0.5,
+                        attr: { d: CLOSE_HIDDEN },
+                        ease: "power3.out",
+                    });
+            };
+
+            const handleClick = () => {
+                if (isAnimating) return;
+
+                isAnimating = true;
+                isOpen = !isOpen;
+
+                isOpen ? openMenu() : closeMenu();
+            };
+
+            navToggle.addEventListener("click", handleClick);
+
+
+            return () => {
+                navToggle.removeEventListener("click", handleClick);
+            };
+        }, navRef);
+
+        return () => ctx.revert();
+    }, []);
+
+    return (
+        <div ref={navRef} className="nav">
+            <div className="nav-logo">
+                <a href="/">
+                    <h1 className="text-3xl heading-font">
+                        ment(ally)
+                    </h1>
+                </a>
+            </div>
+
+            <div className="nav-toggle">
+                <p className="nav-toggle-menu heading-font">Menu</p>
+                <p className="nav-toggle-close heading-font">Close</p>
+            </div>
+
+            <div className="menu">
+                <svg
+                    className="menu-bg-svg"
+                    viewBox="0 0 1131 861"
+                    preserveAspectRatio="none"
+                >
+                    <path id="menu-path" fill="#57401C" />
+                </svg>
+
+                <div className="menu-logo">
+                    <h1 className="text-4xl heading-font">ment(ally)</h1>
+                </div>
+
+                <div className="menu-col menu-col-info">
+                    <img src="https://themindclan.com/images/smaller/professionals/online-offline-natasha-irani-therapist-mumbai-952023.webp" alt="" className="w-full h-[550px] rounded-[10px]" />
+                </div>
+
+                <div className="menu-col menu-col-info">
+                    <h1 className="text-5xl capitalize mb-3 font-heading">your ally in mental health and beyond</h1>
+                    <h6 className="text-lg mb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium voluptatem soluta quo fugit, ducimus dolorum nobis. Quia, quae impedit velit labore accusantium animi eos, et blanditiis quidem exercitationem, similique esse.</h6>
+
+                    <div className="menu-col-content">
+                        <div className="info-mail">
+                            <span>Get in touch</span>
+                            <span>email@example.com</span>
+                        </div>
+                        <div className="info-phone">
+                            <span>Book a Free Call</span>
+                            <span>+1(555)123-4567</span>
+                        </div>
+                    </div>
+
+                    <div className="menu-col-address mt-4">
+                        <span>402, Serenity Heights,
+                            Linking Road, Bandra West,
+                            Mumbai – 400050, India</span>
+                    </div>
+
+                    <div className="info-block social-links mt-3">
+                        <span className="info-label mt-3">Follow me on</span>
+
+                        <div className="social-links-list mt-2">
+                            <a href="#" className="social-link"><FaInstagram /></a>
+                            <a href="#" className="social-link"><FaLinkedin /></a>
+                            <a href="#" className="social-link"><FaTwitter /></a>
+                            <a href="#" className="social-link"><FaFacebook /></a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div className="menu-col menu-col-links">
+                    <a href="/" className="heading-font">Home</a>
+                    <a href="/about-us" className="heading-font">About</a>
+                    <a href="/services" className="heading-font">Services</a>
+                    <a href="/meet-the-team" className="heading-font">Meet the team</a>
+                    <a href="/resources" className="heading-font">Resources</a>
+                    <a href="/book-session" className="heading-font">Book a session</a>
+                </div>
+            </div>
+        </div>
     );
-
-    // Observe all sections
-    sections.forEach(({ element }) => {
-      if (element) observer.observe(element);
-    });
-
-    return () => {
-      sections.forEach(({ element }) => {
-        if (element) observer.unobserve(element);
-      });
-    };
-  }, []);
-
-  // Get current colors based on active section
-  const currentColors =
-    sectionColors[activeSection as keyof typeof sectionColors] ||
-    sectionColors.default;
-
-  // Debug log
-  console.log("Current active section:", activeSection);
-  console.log("Current colors:", currentColors);
-
-  return (
-    <header
-      className={cn(
-        "fixed top-0 z-[100] w-full pt-[20px] transition-all duration-500",
-        currentColors.bg,
-        {
-          "supports-backdrop-filter:bg-background/1 backdrop-blur-xs": scrolled,
-        }
-      )}
-    >
-      <nav
-        className={`mx-auto flex h-14 w-full max-w-7xl items-center justify-between px-4`}
-      >
-        <div
-          className={cn("transition-colors duration-500", currentColors.text)}
-        >
-          <h1 className="font-crimson text-3xl tracking-[2px]">ment(ally)</h1>
-        </div>
-        <div className="hidden items-center gap-10 md:flex">
-          {links.map((link) => (
-            <a
-              key={link.label}
-              className={cn(
-                "uppercase text-xs font-bold transition-colors duration-500",
-                currentColors.text
-              )}
-              href={link.href}
-            >
-              {link.label}
-            </a>
-          ))}
-          <Button className={"bg-(--cta-button) py-5 rounded-full"}>
-            <CTA
-              text={"Book A Session"}
-              className={"bg-cta-button"}
-              className1={"group-hover:text-[#fff]"}
-              dotClassName={"bg-white"}
-            />
-          </Button>
-        </div>
-        <Button
-          size="icon"
-          variant="outline"
-          onClick={() => setOpen(!open)}
-          className="md:hidden"
-          aria-expanded={open}
-          aria-controls="mobile-menu"
-          aria-label="Toggle menu"
-        >
-          <MenuToggleIcon open={open} className="size-5" duration={300} />
-        </Button>
-      </nav>
-      <MobileMenu open={open} className="flex flex-col justify-between gap-2">
-        <div className="grid gap-y-2">
-          {links.map((link) => (
-            <a
-              key={link.label}
-              className={buttonVariants({
-                variant: "ghost",
-                className: "justify-start",
-              })}
-              href={link.href}
-            >
-              {link.label}
-            </a>
-          ))}
-        </div>
-        <div className="flex flex-col gap-2">
-          <BookSession />
-        </div>
-      </MobileMenu>
-    </header>
-  );
 }
-
-type MobileMenuProps = React.ComponentProps<"div"> & {
-  open: boolean;
-};
-
-function MobileMenu({ open, children, className, ...props }: MobileMenuProps) {
-  if (!open || typeof window === "undefined") return null;
-
-  return createPortal(
-    <div
-      id="mobile-menu"
-      className={cn(
-        "bg-background/95 supports-[backdrop-filter]:bg-background/50 backdrop-blur-lg",
-        "fixed top-14 right-0 bottom-0 left-0 z-40 flex flex-col overflow-hidden border-y md:hidden"
-      )}
-    >
-      <div
-        data-slot={open ? "open" : "closed"}
-        className={cn(
-          "data-[slot=open]:animate-in data-[slot=open]:zoom-in-97 ease-out",
-          "size-full p-4",
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </div>
-    </div>,
-    document.body
-  );
-}
-
-export const WordmarkIcon = (props: React.ComponentProps<"svg">) => (
-  <svg viewBox="0 0 84 24" fill="currentColor" {...props}>
-    <path d="M45.035 23.984c-1.34-.062-2.566-.441-3.777-1.16-1.938-1.152-3.465-3.187-4.02-5.36-.199-.784-.238-1.128-.234-2.058 0-.691.008-.87.062-1.207.23-1.5.852-2.883 1.852-4.144.297-.371 1.023-1.09 1.41-1.387 1.399-1.082 2.84-1.68 4.406-1.816.536-.047 1.528-.02 2.047.054 1.227.184 2.227.543 3.106 1.121 1.277.84 2.5 2.184 3.367 3.7.098.168.172.308.172.312-.004 0-1.047.723-2.32 1.598l-2.711 1.867c-.61.422-2.91 2.008-2.993 2.062l-.074.047-1-1.574c-.55-.867-1.008-1.594-1.012-1.61-.007-.019.922-.648 2.188-1.476 1.215-.793 2.2-1.453 2.191-1.46-.02-.032-.508-.27-.691-.34a5 5 0 0 0-.465-.13c-.371-.09-1.105-.125-1.426-.07-1.285.219-2.336 1.3-2.777 2.852-.215.761-.242 1.636-.074 2.355.129.527.383 1.102.691 1.543.234.332.727.82 1.047 1.031.664.434 1.195.586 1.969.555.613-.023 1.027-.129 1.64-.426 1.184-.574 2.16-1.554 2.828-2.843.122-.235.208-.372.227-.368.082.032 3.77 1.938 3.79 1.961.034.032-.407.93-.696 1.414a12 12 0 0 1-1.051 1.477c-.36.422-1.102 1.14-1.492 1.445a9.9 9.9 0 0 1-3.23 1.684 9.2 9.2 0 0 1-2.95.351M74.441 23.996c-1.488-.043-2.8-.363-4.066-.992-1.687-.848-2.992-2.14-3.793-3.774-.605-1.234-.863-2.402-.863-3.894.004-1.149.176-2.156.527-3.11.14-.378.531-1.171.75-1.515 1.078-1.703 2.758-2.934 4.805-3.524.847-.242 1.465-.332 2.433-.351 1.032-.024 1.743.055 2.48.277l.31.09.007 2.48c.004 1.364 0 2.481-.008 2.481a1 1 0 0 1-.12-.055c-.688-.347-2.09-.488-2.962-.296-.754.167-1.296.453-1.785.945a3.7 3.7 0 0 0-1.043 2.11c-.047.382-.02 1.109.055 1.437a3.4 3.4 0 0 0 .941 1.738c.75.75 1.715 1.102 2.875 1.05.645-.03 1.118-.14 1.563-.366q1.721-.864 2.02-3.145c.035-.293.042-1.266.042-7.957V0H84l-.012 8.434c-.008 7.851-.011 8.457-.054 8.757-.196 1.274-.586 2.25-1.301 3.243-1.293 1.808-3.555 3.07-6.145 3.437-.664.098-1.43.14-2.047.125M9.848 23.574a14 14 0 0 1-1.137-.152c-2.352-.426-4.555-1.781-6.117-3.774-.27-.335-.75-1.05-.95-1.406-1.156-2.047-1.695-4.27-1.64-6.77.047-1.995.43-3.66 1.23-5.316.524-1.086 1.04-1.87 1.793-2.715C4.567 1.72 6.652.535 8.793.171 9.68.02 10.093 0 12.297 0h1.789v5.441l-.961.016c-2.36.04-3.441.215-4.441.719-.836.414-1.278.879-1.895 1.976-.219.399-.535 1.02-.535 1.063 0 .02 1.285.027 3.918.027h3.914v5.113h-3.914c-2.54 0-3.918.008-3.918.028 0 .05.254.597.441.953.344.656.649 1.086 1.051 1.48.668.657 1.356.985 2.445 1.16.645.106 1.274.145 2.61.16l1.285.016v5.442l-2.055-.004a120 120 0 0 1-2.183-.016M16.469 14.715c0-5.504.011-9.04.031-9.29a5.54 5.54 0 0 1 1.527-3.48c.778-.82 1.922-1.457 3.118-1.734C21.915.035 22.422 0 24.39 0h1.652v4.914h-1.426c-1.324 0-1.445.004-1.644.055-.739.191-1.059.699-1.106 1.754l-.015.355h4.191v4.914h-4.184v11.602h-5.39ZM27.023 14.727c0-5.223.012-9.04.028-9.278.129-1.98 1.234-3.68 3.012-4.62.87-.462 1.777-.716 2.851-.802A61 61 0 0 1 34.945 0h1.649v4.914h-1.426c-1.32 0-1.441.004-1.64.055-.739.191-1.063.699-1.106 1.754l-.02.355h4.192v4.914H32.41v11.602h-5.387ZM55.48 15.406V7.22h4.66v1.363c0 1.3.005 1.363.051 1.363.04 0 .075-.054.133-.203.38-.98.969-1.68 1.711-2.031.563-.266 1.422-.43 2.492-.48l.414-.02v4.914l-.414.035c-.738.063-1.597.195-2.058.313-.297.082-.688.28-.875.449-.324.289-.532.703-.625 1.254-.094.547-.098.879-.098 5.144v4.274h-5.39Zm0 0" />
-  </svg>
-);

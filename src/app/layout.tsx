@@ -1,8 +1,12 @@
-// src/app/layout.tsx
+
 import type { Metadata } from "next";
 import { Inter, Crimson_Text } from "next/font/google";
 import "./globals.css";
+import "./masters.css"
 import { myFont } from './fonts';
+import LoaderWrapper from "@/components/core/LoaderWrapper";
+import Navbar from "@/components/core/Navbar";
+import Footer from "@/components/core/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -28,12 +32,20 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+
   return (
     <html
       lang="en"
       className={`${inter.variable} ${crimson.variable} ${myFont.variable} h-full antialiased`}
     >
-      <body className="">{children}</body>
+      <body className="">
+        <Navbar />
+        <LoaderWrapper>
+          {children}
+        </LoaderWrapper>
+        <Footer />
+      </body>
     </html>
   );
 }

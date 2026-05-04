@@ -34,6 +34,12 @@ const DEFAULT_DATA: CardT[] = [
         name: "Avery Johnson",
         handle: "@averywrites",
     },
+    {
+        image:
+            "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=200&auto=format&fit=crop&q=60",
+        name: "Avery Johnson",
+        handle: "@averywrites",
+    },
 ];
 
 const VerifyIcon = () => (
@@ -56,18 +62,18 @@ const VerifyIcon = () => (
 );
 
 const Card = ({ card }: { card: CardT }) => (
-    <div className="p-4 rounded-lg mx-4 shadow hover:shadow-lg transition-all duration-200 w-72 shrink-0 bg-white">
-        <div className="flex gap-2">
+    <div className="p-4 rounded-[5px] mx-1 shadow hover:shadow-lg transition-all duration-200 w-72 h-40 shrink-0 bg-[#57401C]">
+        <div className="flex gap-1">
             <img className="size-11 rounded-full" src={card.image} alt={card.name} />
             <div className="flex flex-col">
                 <div className="flex items-center gap-1">
-                    <p className="font-medium">{card.name}</p>
+                    <p className="font-medium text-white">{card.name}</p>
                     <VerifyIcon />
                 </div>
-                <span className="text-xs text-slate-500">{card.handle}</span>
+                <span className="text-xs text-pistachio">{card.handle}</span>
             </div>
         </div>
-        <p className="text-sm pt-4 text-gray-800">
+        <p className="text-sm pt-4 text-white">
             Radiant made undercutting all of our competitors an absolute breeze.
         </p>
     </div>
@@ -84,8 +90,8 @@ function MarqueeRow({
 }) {
     const doubled = React.useMemo(() => [...data, ...data], [data]);
     return (
-        <div className="relative w-full mx-auto max-w-7xl overflow-hidden isolation-isolate">
-            <div className="pointer-events-none absolute left-0 top-0 h-full w-24 md:w-32 z-10 bg-gradient-to-r from-white to-transparent blur-md" />
+        <div className="relative w-full mx-auto max-w-8xl  overflow-hidden isolation-isolate">
+            <div className="pointer-events-none absolute left-0 top-0 h-full w-24 md:w-32 z-10 " />
             <div
                 className={`flex transform-gpu min-w-[200%] ${reverse ? "pt-5 pb-10" : "pt-10 pb-5"
                     }`}
@@ -98,7 +104,7 @@ function MarqueeRow({
                     <Card key={i} card={c} />
                 ))}
             </div>
-            <div className="pointer-events-none absolute right-0 top-0 h-full w-24 md:w-32 z-10 bg-gradient-to-l from-white to-transparent blur-md" />
+            <div className="pointer-events-none absolute right-0 top-0 h-full w-24 md:w-32 z-10" />
         </div>
     );
 }
@@ -118,9 +124,9 @@ export default function Marquee({
           100% { transform: translateX(-50%); }
         }
       `}</style>
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-0">
                 <MarqueeRow data={row1} reverse={false} speed={25} />
-                <MarqueeRow data={row2} reverse={true} speed={25} />
+                {/* <MarqueeRow data={row2} reverse={true} speed={25} /> */}
             </div>
         </>
     );
